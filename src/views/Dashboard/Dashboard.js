@@ -13,6 +13,26 @@ import {
 } from 'reactstrap';
 
 class Dashboard extends Component {
+
+  constructor (props) {
+    super(props)
+    this.getRow = this.getRow.bind(this)
+  }
+
+
+
+  getRow(order) {
+    return (
+      <tr key={order.id}>
+        <td>{order.name}</td>
+        <td>{order.date}</td>
+        <td>{order.flights}</td>
+        <td>
+          <Badge color="success">Active</Badge>
+        </td>
+      </tr>
+    );
+  }
   render() {
     let orders = (this.props.orders || []).map(o => <li key={o.id}> {o.name}</li>)
     console.log('sasadsadsssssAasasassasasasasas', this.props.orders)
@@ -28,54 +48,55 @@ class Dashboard extends Component {
                 <ul>{orders}</ul>
                 <Table responsive>
                   <thead>
-                  <tr>
-                    <th>Username</th>
-                    <th>Date registered</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                  </tr>
+                    <tr>
+                      <th>Name</th>
+                      <th>Date</th>
+                      <th>Flights</th>
+                      <th>Status</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Samppa Nori</td>
-                    <td>2012/01/01</td>
-                    <td>Member</td>
-                    <td>
-                      <Badge color="success">Active</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Estavan Lykos</td>
-                    <td>2012/02/01</td>
-                    <td>Staff</td>
-                    <td>
-                      <Badge color="danger">Banned</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Chetan Mohamed</td>
-                    <td>2012/02/01</td>
-                    <td>Admin</td>
-                    <td>
-                      <Badge color="secondary">Inactive</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Derick Maximinus</td>
-                    <td>2012/03/01</td>
-                    <td>Member</td>
-                    <td>
-                      <Badge color="warning">Pending</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Friderik Dávid</td>
-                    <td>2012/01/21</td>
-                    <td>Staff</td>
-                    <td>
-                      <Badge color="success">Active</Badge>
-                    </td>
-                  </tr>
+                    {this.props.orders.map((order) => this.getRow(order))}
+                    <tr>
+                      <td>Samppa Nori</td>
+                      <td>2012/01/01</td>
+                      <td>Member</td>
+                      <td>
+                        <Badge color="success">Active</Badge>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Estavan Lykos</td>
+                      <td>2012/02/01</td>
+                      <td>Staff</td>
+                      <td>
+                        <Badge color="danger">Banned</Badge>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Chetan Mohamed</td>
+                      <td>2012/02/01</td>
+                      <td>Admin</td>
+                      <td>
+                        <Badge color="secondary">Inactive</Badge>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Derick Maximinus</td>
+                      <td>2012/03/01</td>
+                      <td>Member</td>
+                      <td>
+                        <Badge color="warning">Pending</Badge>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Friderik Dávid</td>
+                      <td>2012/01/21</td>
+                      <td>Staff</td>
+                      <td>
+                        <Badge color="success">Active</Badge>
+                      </td>
+                    </tr>
                   </tbody>
                 </Table>
                 <Pagination>
@@ -101,7 +122,7 @@ class Dashboard extends Component {
               </CardBody>
             </Card>
           </Col>
-          </Row>
+        </Row>
       </div>
     )
   }
